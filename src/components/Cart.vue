@@ -7,6 +7,7 @@
           <p><strong>{{ item.quantity }}</strong> - {{ item.name }} <button @click="removeFromCart(item)">Remove</button></p>
         </li>
       </ul>
+      <h3>Your total is {{ total }}</h3>
     </div>
     <div v-show="items.length === 0">
       <p>Your cart is empty!</p>
@@ -16,7 +17,7 @@
 </template>
 
 <script>
-const shop = [
+const items = [
   {
     name: "One-Punch Man, Vol. 5",
     price: 10.02,
@@ -42,18 +43,17 @@ const Cart = {
   name: 'Cart',
   data: function() {
     return {
-      items: shop,
+      items: items,
       quantity: 1
     }
   },
   computed: {
-    total() {
-      var total = 0;
-      for(var i = 0; i < this.items.length; i++) {
+    total: function() {
+      let total = 0;
+      for(let i = 0; i < this.items.length; i++) {
         total += this.items[i].price;
-        console.log(this.item[i])
       }
-      return total;
+      return Math.round((total + Number.EPSILON) * 100) / 100;
     }
   },
   methods: {
