@@ -1,17 +1,29 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Sweeties</h1>
+    <DessertList v-bind="{desserts, cart}" @add="addToCart"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import DessertList from './components/DessertList.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    DessertList
+  },
+  data() {
+    return {
+      desserts : [{ id: 1, name: "cake", image: "./assets/logo.png"}, { id: 2, name: "cookie", image: "./assets/cookie-placeholder.jpg" }],
+      cart: []
+    }
+  },
+  methods: {
+    addToCart(dessert) {
+      this.cart.push({dessert})
+      console.log(this.cart[0])
+    }
   }
 }
 </script>
