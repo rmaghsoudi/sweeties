@@ -52,9 +52,9 @@ const Cart = {
     total: function() {
       let total = 0;
       for(let i = 0; i < this.items.length; i++) {
-        total += this.items[i].price;
+      
+        total += (this.items[i].price * this.items[i].quantity);
       }
-      console.log(total)
       return Math.round((total + Number.EPSILON) * 100) / 100;
     }
   },
@@ -62,7 +62,10 @@ const Cart = {
 
     removeFromCart(item) {
       item.quantity -= 1;
-      this.items.splice(this.items.indexOf(item), 1);
+      if(item.quantity < 1){
+        this.items.splice(this.items.indexOf(item), 1);
+      }
+   
     }
   }
 };
