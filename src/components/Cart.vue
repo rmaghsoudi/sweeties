@@ -17,33 +17,34 @@
 </template>
 
 <script>
-const items = [
-  {
-    name: "One-Punch Man, Vol. 5",
-    price: 10.02,
-    quantity: 1
-  },
-  {
-    name: "The Quintessential Quintuplets, Vol. 1",
-    price: 22.98,
-    quantity: 2
-  },
-  {
-    name: "Uzumaki: Spiral into Horror, Complete Deluxe Edition",
-    price: 25.19,
-    quantity: 1
-  },
-  {
-    name: "Tomie: Complete Edition",
-    price: 31.49,
-    quantity: 3
-  }
-]
+// const items = [
+//   {
+//     name: "One-Punch Man, Vol. 5",
+//     price: 10.02,
+//     quantity: 1
+//   },
+//   {
+//     name: "The Quintessential Quintuplets, Vol. 1",
+//     price: 22.98,
+//     quantity: 2
+//   },
+//   {
+//     name: "Uzumaki: Spiral into Horror, Complete Deluxe Edition",
+//     price: 25.19,
+//     quantity: 1
+//   },
+//   {
+//     name: "Tomie: Complete Edition",
+//     price: 31.49,
+//     quantity: 3
+//   }
+// ]
 const Cart = {
   name: 'Cart',
+  props: ['items'],
   data: function() {
     return {
-      items: items,
+      // items: [],
       quantity: 1
     }
   },
@@ -53,6 +54,7 @@ const Cart = {
       for(let i = 0; i < this.items.length; i++) {
         total += this.items[i].price;
       }
+      console.log(total)
       return Math.round((total + Number.EPSILON) * 100) / 100;
     }
   },
