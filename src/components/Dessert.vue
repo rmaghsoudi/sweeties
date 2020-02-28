@@ -3,25 +3,27 @@
   <md-card>
     <md-ripple>
       <md-card-header>
+      
         <md-card-header-text>
           <div class="md-title">{{ dessert.name }}</div>
-          <div class="md-subhead">Subheader Placeholder</div>
+            <div class="md-subhead">{{stock}}</div>
         </md-card-header-text>
-        <md-card-media>
-          <img :src="dessert.image" alt="Dessert" />
+     
+          <md-card-media>
+           <img v-bind:src="dessert.image" alt="Dessert">
         </md-card-media>
       </md-card-header>
-
+      <md-content>
+        ${{ dessert.price }}
+      </md-content>
       <md-card-expand>
         <md-card-actions>
           <div>
-          
-             <md-button v-on:click="addCart(dessert)" >Add to Cart</md-button>
+            <md-button v-on:click="addCart(dessert)">Add to Cart</md-button>
             <md-button>
               <md-icon>favorite</md-icon>
             </md-button>
           </div>
-
           <md-card-expand-trigger>
             <md-button class="md-icon-button">
               <md-icon>keyboard_arrow_down</md-icon>
@@ -30,7 +32,7 @@
         </md-card-actions>
         <md-card-expand-content>
           <md-content>
-            Dessert Info Placeholder
+            <p >{{ dessert.description }}</p>
           </md-content>
         </md-card-expand-content>
       </md-card-expand>
@@ -40,21 +42,20 @@
 </template>
 
 <script>
-
 export default {
   name: "Dessert",
-  props: ["dessert", "cart"],
-  //   data() {
-  //   return {
-  //     cart: this.cart,
-  //     dessert: this.dessert
-  //   }
-  // },
-  methods: {
-    addCart(dessert){
-    this.$emit('add', dessert)
+  props: ["dessert"],
+  computed: {
+    stock: function() {
+      return this.dessert.inventory < 5
+        ? `Only ${this.dessert.inventory} left in stock!`
+        : "";
     }
- 
+  },
+  methods: {
+    addCart(dessert) {
+      this.$emit("add", dessert);
+    }
   }
 };
 </script>
@@ -65,6 +66,11 @@ export default {
   width: 350px;
   margin: 4px 10px;
   display: inline-block;
-  vertical-align: top;
+  // vertical-align: top;
+  // display: flex;
 }
+
+// .price {
+//   font: 50px;
+// }
 </style>

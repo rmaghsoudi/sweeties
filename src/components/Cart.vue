@@ -39,7 +39,7 @@
 //     quantity: 3
 //   }
 // ]
-const Cart = {
+export default {
   name: 'Cart',
   props: ['items'],
   data: function() {
@@ -59,7 +59,6 @@ const Cart = {
     }
   },
   methods: {
-
     removeFromCart(item) {
       item.quantity -= 1;
       if(item.quantity < 1){
@@ -70,7 +69,6 @@ const Cart = {
   }
 };
 
-export default Cart;
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

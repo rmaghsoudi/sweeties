@@ -1,7 +1,7 @@
 <template>
 <div class="dessert-list" >
     <div>
-      <Dessert @add="addToCart" v-bind:key="dessert.id" v-for="dessert in desserts" class="dessert-item" v-bind="{dessert, cart}"/>
+      <Dessert @add="addToCart" v-bind:key="dessert.id" v-for="dessert in desserts" class="dessert-item" v-bind="{dessert}"/>
     </div>
 </div>
 </template>
@@ -13,7 +13,7 @@ export default {
   name: "DessertList",
   components: { Dessert 
   },
-  props: ["desserts", "cart"],
+  props: ["desserts"],
    methods: {
     addToCart(dessert){
     this.$emit('add', dessert)
